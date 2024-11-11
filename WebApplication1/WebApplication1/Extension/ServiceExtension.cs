@@ -36,6 +36,7 @@ namespace GestioneOrdiniRistorante.Infrastructure.Extension
         {
             services.AddScoped<ServiceUtenteInt, ServiceUtente>();
             services.AddScoped<ServiceOrdineInt, ServiceOrdine>();
+            services.AddScoped<ServiceProdottoInt, ServiceProdotto>();
             return services;
         }
 

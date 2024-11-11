@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GestioneOrdiniRistorante.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions
 {
@@ -13,7 +14,13 @@ namespace GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions
 
         public ProdottoRepo(MyDBContent T) : base(T)
         {
-            
+            DB = T;
+        }
+
+        public async Task<List<Prodotto>> Menu()
+        {
+            var query = await DB.Prodotto.ToListAsync();
+            return query;
         }
 
         public void Add(Prodotto T)

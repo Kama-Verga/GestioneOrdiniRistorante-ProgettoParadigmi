@@ -9,7 +9,7 @@ using GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions;
 
 namespace GestioneOrdiniRistorante.Application.Service
 {
-    internal class ServiceProdotto : ServiceProdottoInt
+    public class ServiceProdotto : ServiceProdottoInt
     {
         ProdottoRepo ProdottoDB;
         public ServiceProdotto(ProdottoRepo PR) 
@@ -19,12 +19,12 @@ namespace GestioneOrdiniRistorante.Application.Service
 
         public Prodotto TrovaProdotto(int Id)
         {
-            return new Prodotto();
+            return null;
         }
 
-        public List<Prodotto> Menu()
+        public async Task<List<Prodotto>> Menu()
         {
-            return new List<Prodotto>();
+            return await ProdottoDB.Menu();
         }
 
 

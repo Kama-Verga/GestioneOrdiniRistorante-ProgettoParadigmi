@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GestioneOrdiniRistorante.Application.Service.Interface
 {
-    internal interface ServiceProdottoInt
+    public interface ServiceProdottoInt
     {
         Prodotto TrovaProdotto(int Id);
-        List<Prodotto> Menu();
+        Task<List<Prodotto>> Menu();
     }
 }

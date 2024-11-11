@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GestioneOrdiniRistorante.Application.Models.DTO;
 using GestioneOrdiniRistorante.Models;
 
 namespace GestioneOrdiniRistorante.Application.Models.Responses
 {
-    internal class Menu
+    public class MenuRes
     {
-        List<Prodotto> M { get; set; }
+        public MenuDTO Menu { get; set; }
     }
 }

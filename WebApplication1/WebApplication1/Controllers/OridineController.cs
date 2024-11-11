@@ -21,7 +21,7 @@ namespace GestioneOrdiniRistorante.Controllers
         ServiceOrdine Or;
         List<Prodotto> Menu;
         public OridineController(ServiceOrdineInt IntTemp) { 
-            Menu = new List<Prodotto> {
+            /* Menu = new List<Prodotto> {
                 new Prodotto { Id = 1,  Nome = "Pasta alla Bolognese", Prezzo = 8.99, Tipo = Portata.Primo},
                 new Prodotto { Id = 2,  Nome = "Pasta Carbonara", Prezzo = 10.50, Tipo = Portata.Primo},
                 new Prodotto { Id = 3,  Nome = "Tagliatelle ai funghi porcini", Prezzo = 9.99, Tipo = Portata.Primo},
@@ -42,7 +42,7 @@ namespace GestioneOrdiniRistorante.Controllers
                 new Prodotto { Id = 18, Nome = "Cheesecake al limone", Prezzo = 4.99, Tipo = Portata.Dolce},
                 new Prodotto { Id = 19, Nome = "Torta di mele", Prezzo = 4.99, Tipo = Portata.Dolce},
                 new Prodotto { Id = 20, Nome = "Cannoli siciliani", Prezzo = 4.99, Tipo = Portata.Dolce},
-            };
+            }; */
 
             OrInt = IntTemp;
 

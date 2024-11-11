@@ -10,7 +10,7 @@ namespace GestioneOrdiniRistorante.Infrastructure
 {
     public class MyDBContent :  DbContext
     {
-        public DbSet<Prodotto> Piatto { get; set; }
+        public DbSet<Prodotto> Prodotto { get; set; }
         public DbSet<Utente> Utente { get; set; }  
 
         public MyDBContent()
