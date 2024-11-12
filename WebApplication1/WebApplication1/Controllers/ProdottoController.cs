@@ -1,8 +1,8 @@
 ﻿using GestioneOrdiniRistorante.Application.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
-using GestioneOrdiniRistorante.Application.Models.Request;
-using GestioneOrdiniRistorante.Application.Models.Responses;
-using GestioneOrdiniRistorante.Application.Models.DTO;
+using GestioneOrdiniRistorante.Models.Models.Request;
+using GestioneOrdiniRistorante.Models.Models.Responses;
+using GestioneOrdiniRistorante.Models.Models.DTO;
 using GestioneOrdiniRistorante.Application.Service;
 using System.ComponentModel.Design;
 

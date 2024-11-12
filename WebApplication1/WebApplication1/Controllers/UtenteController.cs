@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using GestioneOrdiniRistorante.Application.Service.Interface;
-using GestioneOrdiniRistorante.Application.Models.Request;
-using GestioneOrdiniRistorante.Application.Models.Responses;
-using GestioneOrdiniRistorante.Application.Models.DTO;
+using GestioneOrdiniRistorante.Models.Models.Request;
+using GestioneOrdiniRistorante.Models.Models.Responses;
+using GestioneOrdiniRistorante.Models.Models.DTO;
 using GestioneOrdiniRistorante.Application.Service;
 
 namespace GestioneOrdiniRistorante.Controllers
