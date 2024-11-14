@@ -13,7 +13,7 @@ using GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions;
 
 namespace GestioneOrdiniRistorante.Application.Service
 {
-    internal class ServiceTokenJWT : ServiceTokenJWTInt
+    public class ServiceTokenJWT : ServiceTokenJWTInt
     {
         private readonly JWTAuthenticationOption jwtAuthenticationOption;
         private readonly TokenJWTRepo _tokenJWTRepository;

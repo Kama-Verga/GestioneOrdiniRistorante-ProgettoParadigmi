@@ -1,4 +1,5 @@
 using GestioneOrdiniRistorante.Infrastructure.Extension;
+using GestioneOrdiniRistorante.Web.Extension;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,20 +11,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddModelServices(builder.Configuration);
 builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddWebServices(builder.Configuration);
+builder.Services.AddOptions(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.AddWebMiddleware();
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
 
 app.Run();

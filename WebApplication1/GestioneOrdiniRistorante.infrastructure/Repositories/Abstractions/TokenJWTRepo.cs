@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions
 {
-    public class TokenJWTRepo
+    public class TokenJWTRepo 
     {
         private MyDBContent DB;
 

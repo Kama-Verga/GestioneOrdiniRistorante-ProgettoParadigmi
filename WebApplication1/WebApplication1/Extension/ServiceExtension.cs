@@ -23,6 +23,8 @@ namespace GestioneOrdiniRistorante.Infrastructure.Extension
 {
     public static class ServiceExtension
     {
+
+    
         public static IServiceCollection AddWebServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers();
@@ -91,7 +93,7 @@ namespace GestioneOrdiniRistorante.Infrastructure.Extension
             return services;
         }
 
-        private static IServiceCollection AddOptions(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddOptions(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<JWTAuthenticationOption>(
                 configuration.GetSection("JwtAuthentication")
@@ -116,6 +118,7 @@ namespace GestioneOrdiniRistorante.Infrastructure.Extension
 
             services.AddScoped<UtenteRepo>();
             services.AddScoped<ProdottoRepo>();
+            services.AddScoped<TokenJWTRepo>();
 
             return services;
         }
@@ -124,6 +127,7 @@ namespace GestioneOrdiniRistorante.Infrastructure.Extension
             services.AddScoped<ServiceUtenteInt, ServiceUtente>();
             services.AddScoped<ServiceOrdineInt, ServiceOrdine>();
             services.AddScoped<ServiceProdottoInt, ServiceProdotto>();
+            services.AddScoped<ServiceTokenJWTInt, ServiceTokenJWT>();
             return services;
         }
 

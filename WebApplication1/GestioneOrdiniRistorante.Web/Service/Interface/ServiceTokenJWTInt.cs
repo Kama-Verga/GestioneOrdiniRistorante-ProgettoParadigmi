@@ -7,7 +7,7 @@ using GestioneOrdiniRistorante.Models.Models.Request;
 
 namespace GestioneOrdiniRistorante.Application.Service.Interface
 {
-    internal interface ServiceTokenJWTInt
+    public interface ServiceTokenJWTInt
     {
         string CreaToken(CreaTokenJWTReq Req);
     }
