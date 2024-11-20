@@ -27,10 +27,11 @@ namespace GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions
         {
             DB.Add(T);
         }
-        
-        public Prodotto FindById(int i)
+
+        public async Task<Prodotto> FindById(int i)
         {
-            return DB.Set<Prodotto>().Find(i);
+            var query = await DB.Set<Prodotto>().FindAsync(i);
+            return query;
         }
 
     }

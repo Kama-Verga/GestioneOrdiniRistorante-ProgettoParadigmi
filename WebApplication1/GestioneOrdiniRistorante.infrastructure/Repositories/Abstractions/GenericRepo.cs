@@ -38,6 +38,8 @@ namespace GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions
 
         public void Save()
         {
+            SalvaDatiAsync();
+            /*
             try
             {
                 _ctx.SaveChanges();
@@ -46,6 +48,25 @@ namespace GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions
             {
                 Console.WriteLine("DbUpdateException error details: " + ex.InnerException?.Message);
                 throw;  // Rilancia l'eccezione se necessario
+            }
+            */
+        }
+
+        public async Task SalvaDatiAsync()
+        {
+            try
+            {
+
+                Console.WriteLine("salvataggio in corso");
+                await _ctx.SaveChangesAsync();
+                Console.WriteLine("salvataggio completato");
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine("Errore durante il salvataggio:");
+                Console.WriteLine(ex.InnerException?.Message); // Dettaglio principale
+                Console.WriteLine(ex.InnerException?.InnerException?.Message); // Causa radice (se presente)
+                throw; // Rilancia l'eccezione se necessario
             }
         }
 

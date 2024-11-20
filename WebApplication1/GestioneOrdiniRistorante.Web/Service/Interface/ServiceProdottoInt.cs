@@ -9,7 +9,7 @@ namespace GestioneOrdiniRistorante.Application.Service.Interface
 {
     public interface ServiceProdottoInt
     {
-        Prodotto TrovaProdotto(int Id);
+        Task<Prodotto> TrovaProdotto(int Id);
         Task<List<Prodotto>> Menu();
     }
 }

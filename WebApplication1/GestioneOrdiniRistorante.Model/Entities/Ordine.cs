@@ -1,35 +1,38 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
+using GestioneOrdiniRistorante.Models.Entities;
 
 namespace GestioneOrdiniRistorante.Models
 {
     public class Ordine
     {
-        public Utente Creatore { get; set; }
+        [Key]
+        public int Id;
+        public String MailCreatore { get; set; }
         public DateTime Data_creazione { get; set; }
         public int Numero_Ordine { get; set; }
         public String Indirizzo_Di_Consegna { get; set; }
-        public String Contenuto { get; set; }
-        public double Prezzo;
+        public decimal Prezzo { get; set; }
 
-        public Ordine(Utente Creatore, DateTime Data_creazione, int Numero_Ordine, String Contenuto, double Prezzo)
-        {
-            this.Creatore = Creatore;
-            this.Data_creazione = Data_creazione;
-            this.Numero_Ordine = Numero_Ordine;
-            this.Contenuto = Contenuto;
-            this.Prezzo = Prezzo; 
-        }
+        // Relazione molti-a-molti con OrdineProdotto
+        public ICollection<ProdottiInOrdine> OrdineProdotti { get; set; } = new List<ProdottiInOrdine>();
 
-        public Ordine(Utente Creatore, DateTime Data_creazione, int Numero_Ordine, String Contenuto, double Prezzo, String Indirizzo_Di_Consegna)
+        public Ordine(String MailCreatore, int Numero_Ordine, String Indirizzo_Di_Consegna)
         {
-            this.Creatore = Creatore;
-            this.Data_creazione = Data_creazione;
+            this.MailCreatore = MailCreatore;
+            this.Data_creazione = DateTime.Now;
             this.Numero_Ordine = Numero_Ordine;
-            this.Contenuto = Contenuto;
-            this.Prezzo = Prezzo;
             this.Indirizzo_Di_Consegna = Indirizzo_Di_Consegna;
         }
+        public void AggiungiProdotto(Prodotto T)
+        {
+            ProdottiInOrdine PIT = new ProdottiInOrdine(this, T);
 
+            OrdineProdotti.Add(PIT);
+        }
 
 
     }

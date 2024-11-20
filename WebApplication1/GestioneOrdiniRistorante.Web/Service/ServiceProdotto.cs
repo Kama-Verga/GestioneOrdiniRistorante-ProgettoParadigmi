@@ -17,9 +17,9 @@ namespace GestioneOrdiniRistorante.Application.Service
             ProdottoDB = PR;
         }
 
-        public Prodotto TrovaProdotto(int Id)
+        public async Task<Prodotto> TrovaProdotto(int Id)
         {
-            return null;
+            return await ProdottoDB.FindById(Id);
         }
 
         public async Task<List<Prodotto>> Menu()

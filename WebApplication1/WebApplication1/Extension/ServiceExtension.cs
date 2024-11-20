@@ -93,7 +93,23 @@ namespace GestioneOrdiniRistorante.Infrastructure.Extension
             return services;
         }
 
-        public static IServiceCollection AddOptions(this IServiceCollection services, IConfiguration configuration)
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public static IServiceCollection AddOptions(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<JWTAuthenticationOption>(
                 configuration.GetSection("JwtAuthentication")
@@ -115,7 +131,7 @@ namespace GestioneOrdiniRistorante.Infrastructure.Extension
                 options.UseSqlServer(configuration.GetConnectionString("MyDBContent"));
             });
 
-
+            services.AddScoped<OrdineRepo>();
             services.AddScoped<UtenteRepo>();
             services.AddScoped<ProdottoRepo>();
             services.AddScoped<TokenJWTRepo>();

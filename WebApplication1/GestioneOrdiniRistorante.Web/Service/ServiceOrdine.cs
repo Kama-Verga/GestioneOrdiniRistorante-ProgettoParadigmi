@@ -3,20 +3,25 @@ using System.ComponentModel.Design;
 using GestioneOrdiniRistorante.Infrastructure;
 using GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions;
 using GestioneOrdiniRistorante.Application.Service.Interface;
+using GestioneOrdiniRistorante.Models.Models.DTO;
 
 namespace GestioneOrdiniRistorante.Service
 {
     public class ServiceOrdine : ServiceOrdineInt
     {
+
+        private readonly OrdineRepo OrdineDB;
         int Numero_ordine_corrente = 0;
 
-        public ServiceOrdine()
+        public ServiceOrdine(OrdineRepo OR)
         {
-            throw new NotImplementedException();
+            OrdineDB = OR;
         }
-        public Ordine CreaOrdine()
+        public Ordine CreaOrdine(Ordine T)
         {
-            throw new NotImplementedException();
+            OrdineDB.Add(T);
+            OrdineDB.Save();
+            return T;
         }
 
         public List<Ordine> TrovaOrdiniDaUtente(Utente a)

@@ -9,7 +9,7 @@ namespace GestioneOrdiniRistorante.Application.Service.Interface
 {
     public interface ServiceOrdineInt
     {
-        Ordine CreaOrdine();
+        Ordine CreaOrdine(Ordine a);
 
         List<Ordine> TrovaOrdiniDaUtente(Utente a);
         List<Ordine> TrovaOrdini();
