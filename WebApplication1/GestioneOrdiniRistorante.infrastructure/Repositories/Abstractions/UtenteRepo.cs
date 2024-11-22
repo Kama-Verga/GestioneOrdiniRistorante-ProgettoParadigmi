@@ -23,7 +23,8 @@ namespace GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions
 
         public Utente FindById(int i)
         {
-            return DB.Set<Utente>().Find(i);
+            var T = DB.Set<Utente>().Find(i);
+            return T;
         }
 
     }

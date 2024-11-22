@@ -19,7 +19,7 @@ namespace GestioneOrdiniRistorante.Web.Controllers
 
         [HttpGet]
         [Route("Menù")]
-        public async Task<IActionResult> PostMenu()
+        public IActionResult PostMenu()
         {
             var Ris = new MenuRes();
             Ris.Menu = new MenuDTO(ProdottoS.Menu());

@@ -8,9 +8,9 @@ namespace GestioneOrdiniRistorante.Models.Models.Request
         public String MailCreatore { get; set; } = string.Empty;
         public String Indirizzo_Di_Consegna { get; set; } = string.Empty;
         public List<int> Contenuto { get; set; }
-        public Ordine ToEntity(int Numero_Ordine)
+        public Ordine ToEntity()
         {
-            Ordine ordine = new Ordine(MailCreatore, Numero_Ordine, Indirizzo_Di_Consegna);
+            Ordine ordine = new Ordine(MailCreatore, Indirizzo_Di_Consegna);
 
             return ordine;
         }

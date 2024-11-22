@@ -9,6 +9,6 @@ namespace GestioneOrdiniRistorante.Application.Service.Interface
 {
     public interface ServiceUtenteInt
     {
-        public Utente CreaUtente(Utente T);
+        public Task<Utente> CreaUtente(Utente T);
     }
 }

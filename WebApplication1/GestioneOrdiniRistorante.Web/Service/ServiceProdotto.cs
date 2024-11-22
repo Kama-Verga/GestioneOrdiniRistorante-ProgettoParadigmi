@@ -19,12 +19,15 @@ namespace GestioneOrdiniRistorante.Application.Service
 
         public async Task<Prodotto> TrovaProdotto(int Id)
         {
-            return await ProdottoDB.FindById(Id);
+            var T = await ProdottoDB.FindById(Id);
+            return T;
         }
 
         public async Task<List<Prodotto>> Menu()
         {
-            return await ProdottoDB.Menu();
+            var T = await ProdottoDB.Menu();
+            await ProdottoDB.SalvaDatiAsync();
+            return T;
         }
 
 

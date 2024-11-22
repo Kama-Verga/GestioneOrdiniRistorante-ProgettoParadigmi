@@ -25,9 +25,9 @@ namespace GestioneOrdiniRistorante.Controllers
         [HttpPost]
         [Route("Crea-Utente")]  // Nome specifico per questo POST
         // 0 = Utente - 1 = amministratore
-        public IActionResult CreaUtente(CreaUtenteReq T)
+        public async Task<IActionResult> CreaUtente(CreaUtenteReq T)
         {
-            Utente Tr = UtenteS.CreaUtente(T.ToEntity());
+            Utente Tr = await UtenteS.CreaUtente(T.ToEntity());
 
             var Ris = new CreaUtenteRes();
             Ris.Utente = new UtenteDTO(Tr);

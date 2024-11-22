@@ -11,18 +11,19 @@ namespace GestioneOrdiniRistorante.Service
     {
 
         private readonly OrdineRepo OrdineDB;
-        int Numero_ordine_corrente = 0;
 
         public ServiceOrdine(OrdineRepo OR)
         {
             OrdineDB = OR;
         }
-        public Ordine CreaOrdine(Ordine T)
+        public async Task<Ordine> CreaOrdine(Ordine ordine)
         {
-            OrdineDB.Add(T);
-            OrdineDB.Save();
-            return T;
+            OrdineDB.AddAsync(ordine); // Aggiunge l'ordine
+            await OrdineDB.SalvaDatiAsync(); // Salva solo una volta al termine
+            Console.WriteLine(ordine.MailCreatore);
+            return ordine;
         }
+
 
         public List<Ordine> TrovaOrdiniDaUtente(Utente a)
         {

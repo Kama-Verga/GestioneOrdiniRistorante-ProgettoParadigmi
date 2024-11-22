@@ -10,30 +10,24 @@ namespace GestioneOrdiniRistorante.Models
     public class Ordine
     {
         [Key]
-        public int Id;
+        public int Numero_Ordine;
         public String MailCreatore { get; set; }
         public DateTime Data_creazione { get; set; }
-        public int Numero_Ordine { get; set; }
         public String Indirizzo_Di_Consegna { get; set; }
         public decimal Prezzo { get; set; }
 
         // Relazione molti-a-molti con OrdineProdotto
-        public ICollection<ProdottiInOrdine> OrdineProdotti { get; set; } = new List<ProdottiInOrdine>();
+        public ICollection<ProdottoInOrdine> ProdottiInOrdine { get; set; } = new List<ProdottoInOrdine>();
 
-        public Ordine(String MailCreatore, int Numero_Ordine, String Indirizzo_Di_Consegna)
+        public Ordine(String MailCreatore, String Indirizzo_Di_Consegna)
         {
             this.MailCreatore = MailCreatore;
-            this.Data_creazione = DateTime.Now;
-            this.Numero_Ordine = Numero_Ordine;
+            this.Data_creazione = DateTime.Now.Date;
             this.Indirizzo_Di_Consegna = Indirizzo_Di_Consegna;
         }
         public void AggiungiProdotto(Prodotto T)
         {
-            ProdottiInOrdine PIT = new ProdottiInOrdine(this, T);
-
-            OrdineProdotti.Add(PIT);
+            ProdottiInOrdine.Add(new ProdottoInOrdine(this, T));
         }
-
-
     }
 }

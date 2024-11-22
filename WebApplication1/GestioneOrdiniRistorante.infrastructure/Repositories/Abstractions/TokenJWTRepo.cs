@@ -21,6 +21,7 @@ namespace GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions
         public Utente? GetUtente(string email, string password)
         {
             var utente = DB.Utente.Where(u => u.Mail == email && u.Password == password).FirstOrDefault();
+            
             return utente;
         }
 

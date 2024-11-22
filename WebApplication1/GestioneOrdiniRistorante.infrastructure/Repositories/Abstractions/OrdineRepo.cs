@@ -21,9 +21,15 @@ namespace GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions
             DB.Add(T);
         }
 
+        public void AddAsync(Ordine T)
+        {
+            DB.AddAsync(T);
+        }
+
         public Ordine FindById(int i)
         {
-            return DB.Set<Ordine>().Find(i);
+            var T = DB.Set<Ordine>().Find(i);
+            return T;
         }
     }
 }

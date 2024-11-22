@@ -6,6 +6,7 @@ namespace GestioneOrdiniRistorante.Models
     public class Utente 
     {
         [Key]
+        public int Id { get; set; }
         public String Mail { get; set; }
         public String Nome { get; set; }
         public String Cognome { get; set; }

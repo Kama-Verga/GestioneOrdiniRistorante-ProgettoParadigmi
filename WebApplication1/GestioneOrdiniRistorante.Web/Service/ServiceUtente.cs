@@ -12,10 +12,10 @@ namespace GestioneOrdiniRistorante.Service
         {
             UtenteDB = UR;
         }
-        public Utente CreaUtente(Utente T)
+        public async Task<Utente> CreaUtente(Utente T)
         {
             UtenteDB.Add(T);
-            UtenteDB.Save();
+            await UtenteDB.SalvaDatiAsync();
             Console.WriteLine(T.Nome);
             return T;
         }

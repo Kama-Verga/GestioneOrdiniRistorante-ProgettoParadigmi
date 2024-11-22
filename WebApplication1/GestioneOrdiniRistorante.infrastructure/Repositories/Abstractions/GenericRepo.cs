@@ -38,7 +38,7 @@ namespace GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions
 
         public void Save()
         {
-            SalvaDatiAsync();
+            _ctx.SaveChanges();
             /*
             try
             {

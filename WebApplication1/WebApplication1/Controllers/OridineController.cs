@@ -23,11 +23,9 @@ namespace GestioneOrdiniRistorante.Controllers
     {
         private readonly ServiceOrdineInt OrdineS;
         private readonly ServiceProdottoInt ProdottoS;
-        int Numero_Ordine;
 
         public OridineController(ServiceOrdineInt IntTemp, ServiceProdottoInt IntTemp2) 
         {
-            Numero_Ordine = 0;
             OrdineS = IntTemp;
             ProdottoS = IntTemp2;
         }
@@ -37,23 +35,61 @@ namespace GestioneOrdiniRistorante.Controllers
         [Route("CreaOrdine")]
         public async Task<IActionResult> CreaOrdine(CreaOrdineReq T)
         {
-            Numero_Ordine++;
-            Ordine Tr = T.ToEntity(Numero_Ordine);
-            Tr.MailCreatore = "string";
+            Ordine ordine = T.ToEntity();
+            ordine.MailCreatore = "string";
 
-            decimal Tprezzo = 0;
-            foreach (int item in T.Contenuto) {
-                Prodotto PT = await ProdottoS.TrovaProdotto(item);
-                Tr.AggiungiProdotto(PT);
-                Tprezzo = Tprezzo + PT.Prezzo;
+            List<Prodotto> LP = new List<Prodotto>();
+
+            foreach (int prodottoId in T.Contenuto)
+            {
+                // Recupera il prodotto
+                Prodotto prodotto = await ProdottoS.TrovaProdotto(prodottoId);
+
+                LP.Add(prodotto);
+
+                // Aggiungi il prodotto all'ordine
+                ordine.AggiungiProdotto(prodotto);
             }
-            Tr.Prezzo = Tprezzo;
 
-            OrdineS.CreaOrdine(Tr);
-            var Ris = new CreaOrdineRes();
-            Ris.Ordine = new OrdineDTO(Tr);
-            return Ok(Ris);
+            ordine.Prezzo = CalcolaTotaleConSconto(LP);
 
+            // Salva l'ordine
+            await OrdineS.CreaOrdine(ordine);
+
+            // Crea la risposta
+            var response = new CreaOrdineRes
+            {
+                Ordine = new OrdineDTO(ordine)
+            };
+
+            return Ok(response);
         }
+
+        public static decimal CalcolaTotaleConSconto(List<Prodotto> prodotti)
+        {
+            decimal totale = 0;
+
+            // Raggruppiamo i prodotti per tipo
+            var gruppi = prodotti.GroupBy(p => p.Tipo);
+
+            // Per ogni gruppo applicare lo sconto del 10%
+            foreach (var gruppo in gruppi)
+            {
+                // Calcoliamo la somma del gruppo
+                decimal sommaGruppo = gruppo.Sum(p => p.Prezzo);
+
+                // Applichiamo lo sconto del 10% al gruppo
+                decimal sommaScontata = sommaGruppo * 0.9m;
+
+                // Aggiungiamo al totale
+                totale += sommaScontata;
+            }
+
+            return totale;
+        }
+
+
+
+
     }
 }

@@ -28,6 +28,7 @@ namespace GestioneOrdiniRistorante.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
             Console.WriteLine("connessione in corso");
                 var connectionString = "Server=localhost;Database=master;User Id=manager;Trusted_Connection=True;TrustServerCertificate=True;";
                 optionsBuilder.UseSqlServer(connectionString)
@@ -40,9 +41,11 @@ namespace GestioneOrdiniRistorante.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Utente>()
+                .HasKey(o => o.Id);  // Impostazione esplicita della chiave primaria
 
             modelBuilder.Entity<Ordine>()
-                .HasKey(o => o.Id);  // Impostazione esplicita della chiave primaria
+                .HasKey(o => o.Numero_Ordine);  // Impostazione esplicita della chiave primaria
 
             modelBuilder.Entity<Prodotto>()
                 .Property(e => e.Prezzo);
@@ -50,18 +53,25 @@ namespace GestioneOrdiniRistorante.Infrastructure
             modelBuilder.Entity<Prodotto>()
                 .HasKey(o => o.Id);  // Impostazione esplicita della chiave primaria
 
-            modelBuilder.Entity<ProdottiInOrdine>()
+            modelBuilder.Entity<ProdottoInOrdine>()
                 .HasKey(op => new { op.OrdineId, op.ProdottoId });
 
-            modelBuilder.Entity<ProdottiInOrdine>()
-                .HasOne(op => op.Ordine)
-                .WithMany(o => o.OrdineProdotti)
-                .HasForeignKey(op => op.OrdineId);
+            modelBuilder.Entity<ProdottoInOrdine>()
+                .HasKey(pio => pio.Id); // Imposta l'Id come chiave primaria
 
-            modelBuilder.Entity<ProdottiInOrdine>()
-                .HasOne(op => op.Prodotto)
-                .WithMany() // Nessuna navigazione inversa
-                .HasForeignKey(op => op.ProdottoId);
+            modelBuilder.Entity<ProdottoInOrdine>()
+                .Property(pio => pio.Id)
+                .ValueGeneratedOnAdd(); // Indica che l'Id è auto-incrementante
+
+            modelBuilder.Entity<ProdottoInOrdine>()
+                .HasOne(pio => pio.Ordine)
+                .WithMany(o => o.ProdottiInOrdine)
+                .HasForeignKey(pio => pio.OrdineId);
+
+            modelBuilder.Entity<ProdottoInOrdine>()
+                .HasOne(pio => pio.Prodotto)
+                .WithMany(p => p.ProdottiInOrdine) // Associazione bidirezionale
+                .HasForeignKey(pio => pio.ProdottoId);
         }
 
 
