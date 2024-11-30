@@ -23,6 +23,7 @@ namespace GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions
             return query;
         }
 
+
         public void Add(Prodotto T)
         {
             DB.Add(T);

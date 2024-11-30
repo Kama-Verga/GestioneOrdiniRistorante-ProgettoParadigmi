@@ -20,19 +20,23 @@ namespace GestioneOrdiniRistorante.Service
         {
             OrdineDB.AddAsync(ordine); // Aggiunge l'ordine
             await OrdineDB.SalvaDatiAsync(); // Salva solo una volta al termine
-            Console.WriteLine(ordine.MailCreatore);
+            Console.WriteLine(ordine.UtenteId);
             return ordine;
         }
 
 
-        public List<Ordine> TrovaOrdiniDaUtente(Utente a)
+        public async Task<List<Ordine>> TrovaOrdiniConUtente(DateTime Inizio, DateTime Fine, int IdUtente)
         {
-            throw new NotImplementedException();
+            var T = await OrdineDB.TrovaOrdiniConUtente(Inizio, Fine, IdUtente );
+            Console.WriteLine("fatto");
+            return T;
         }
 
-        public List<Ordine> TrovaOrdini()
+        public async Task<List<Ordine>> TrovaOrdini(DateTime Inizio, DateTime Fine)
         {
-            throw new NotImplementedException();
+            var T = await OrdineDB.TrovaOrdini(Inizio, Fine);
+            Console.WriteLine("fatto");
+            return T;
         }
     }
 }

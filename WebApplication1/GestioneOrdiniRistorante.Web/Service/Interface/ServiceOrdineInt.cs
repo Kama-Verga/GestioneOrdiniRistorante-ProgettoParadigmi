@@ -11,8 +11,8 @@ namespace GestioneOrdiniRistorante.Application.Service.Interface
     {
         Task<Ordine> CreaOrdine(Ordine a);
 
-        List<Ordine> TrovaOrdiniDaUtente(Utente a);
-        List<Ordine> TrovaOrdini();
+        Task<List<Ordine>> TrovaOrdiniConUtente(DateTime Inizio, DateTime Fine, int a);
+        Task<List<Ordine>> TrovaOrdini(DateTime Inizio, DateTime Fine);
 
     }
 }

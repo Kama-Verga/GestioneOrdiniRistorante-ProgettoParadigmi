@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GestioneOrdiniRistorante.Infrastructure.Repositories.Abstractions;
 using GestioneOrdiniRistorante.Application.Service.Interface;
+using GestioneOrdiniRistorante.Application.Validator;
 using GestioneOrdiniRistorante.Application.Service;
 using GestioneOrdiniRistorante.Service;
 using GestioneOrdiniRistorante.Application.Options;
@@ -93,23 +94,7 @@ namespace GestioneOrdiniRistorante.Infrastructure.Extension
             return services;
         }
 
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-public static IServiceCollection AddOptions(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddOptions(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<JWTAuthenticationOption>(
                 configuration.GetSection("JwtAuthentication")
@@ -117,11 +102,6 @@ public static IServiceCollection AddOptions(this IServiceCollection services, IC
 
             return services;
         }
-
-
-
-
-
 
 
         public static IServiceCollection AddModelServices(this IServiceCollection services, IConfiguration configuration)
@@ -140,6 +120,9 @@ public static IServiceCollection AddOptions(this IServiceCollection services, IC
         }
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
+
+            services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddScoped<ServiceUtenteInt, ServiceUtente>();
             services.AddScoped<ServiceOrdineInt, ServiceOrdine>();
             services.AddScoped<ServiceProdottoInt, ServiceProdotto>();

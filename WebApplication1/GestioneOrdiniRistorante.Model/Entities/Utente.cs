@@ -13,6 +13,7 @@ namespace GestioneOrdiniRistorante.Models
         public String Password { get; set; }
         public int Ruolo { get; set; } //( 1+ = Cliente / 0 = Amministratore)
 
+
         public Utente(String Mail, String Nome, String Cognome, String Password, int Ruolo) { 
             this.Mail = Mail;
             this.Nome = Nome;

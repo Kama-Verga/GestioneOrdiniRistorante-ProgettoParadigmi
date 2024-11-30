@@ -14,10 +14,16 @@ namespace GestioneOrdiniRistorante.Service
         }
         public async Task<Utente> CreaUtente(Utente T)
         {
-            UtenteDB.Add(T);
-            await UtenteDB.SalvaDatiAsync();
-            Console.WriteLine(T.Nome);
-            return T;
+            if (await UtenteDB.MailPresente(T.Mail))
+            {
+                UtenteDB.Add(T);
+                await UtenteDB.SalvaDatiAsync();
+                Console.WriteLine(T.Nome);
+                return T;
+            }
+            else
+                throw new Exception("mail Gia Presente");
+            
         }
 
 

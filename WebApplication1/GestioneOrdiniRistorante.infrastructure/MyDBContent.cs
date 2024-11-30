@@ -30,8 +30,11 @@ namespace GestioneOrdiniRistorante.Infrastructure
         {
 
             Console.WriteLine("connessione in corso");
-                var connectionString = "Server=localhost;Database=master;User Id=manager;Trusted_Connection=True;TrustServerCertificate=True;";
-                optionsBuilder.UseSqlServer(connectionString)
+                var connectionString = @"Server=localhost\MSSQLSERVER01;Database=master;TrustServerCertificate=True;Integrated Security=True;";
+            optionsBuilder.UseSqlServer(connectionString, sqlOptions => sqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 3,         // Number of retry attempts
+                maxRetryDelay: TimeSpan.FromSeconds(10),
+                errorNumbersToAdd: null))
                               .LogTo(Console.WriteLine)
                               .EnableSensitiveDataLogging();
             Console.WriteLine("Connessione completata");

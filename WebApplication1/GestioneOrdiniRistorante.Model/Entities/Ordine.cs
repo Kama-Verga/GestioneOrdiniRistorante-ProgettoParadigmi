@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
@@ -9,9 +8,10 @@ namespace GestioneOrdiniRistorante.Models
 {
     public class Ordine
     {
+    
         [Key]
         public int Numero_Ordine;
-        public String MailCreatore { get; set; }
+        public int UtenteId { get; set; }  // Chiave esterna
         public DateTime Data_creazione { get; set; }
         public String Indirizzo_Di_Consegna { get; set; }
         public decimal Prezzo { get; set; }
@@ -19,9 +19,9 @@ namespace GestioneOrdiniRistorante.Models
         // Relazione molti-a-molti con OrdineProdotto
         public ICollection<ProdottoInOrdine> ProdottiInOrdine { get; set; } = new List<ProdottoInOrdine>();
 
-        public Ordine(String MailCreatore, String Indirizzo_Di_Consegna)
+        public Ordine(int UtenteId, String Indirizzo_Di_Consegna)
         {
-            this.MailCreatore = MailCreatore;
+            this.UtenteId = UtenteId;
             this.Data_creazione = DateTime.Now.Date;
             this.Indirizzo_Di_Consegna = Indirizzo_Di_Consegna;
         }
@@ -29,5 +29,6 @@ namespace GestioneOrdiniRistorante.Models
         {
             ProdottiInOrdine.Add(new ProdottoInOrdine(this, T));
         }
+    
     }
 }

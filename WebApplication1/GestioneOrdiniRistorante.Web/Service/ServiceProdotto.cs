@@ -22,7 +22,7 @@ namespace GestioneOrdiniRistorante.Application.Service
             var T = await ProdottoDB.FindById(Id);
             return T;
         }
-
+        
         public async Task<List<Prodotto>> Menu()
         {
             var T = await ProdottoDB.Menu();
