@@ -1,3 +1,5 @@
+**Scopo del Applicativo**
+
 Il progetto comprende un programma per la gestione di ordini per un ristorante, prendendo in considerazioni le API per la: 
 - Creazione di un utente di tipo Cliente (anonima senza autenticazione)login
 - sistema di Autenticazione/login tramite JWT
@@ -8,7 +10,7 @@ Il progetto comprende un programma per la gestione di ordini per un ristorante, 
 
 ---
 
-Per inizializzare il progetto.
+**Per inizializzare il progetto.**
 - il progetto sfrutta un Database hostato in macchina locale Già esistente, suggerisco l'utilizzo di SSMS per la creazione del DB ( https://learn.microsoft.com/it-it/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)
   e SQL Server su Azure per l'host in locale (https://www.microsoft.com/it-it/sql-server/sql-server-downloads)
 - una volta avviato il server tramite SQL Server Azure, si esegue il file "Genera DB.sql" su SSMS che creerà tutte le tabelle e compilerà la tabella del menù.
@@ -20,7 +22,7 @@ Per inizializzare il progetto.
 
 ---
 
-Utilizzare Le API Tramite Swagger.
+**Utilizzare Le API Tramite Swagger.**
 
 una volta compilato il progetto la schermata dello Swagger si presenterà cosi, ![image](https://github.com/user-attachments/assets/c64bb22c-3301-441e-b7c8-d7a7d1563273)
 - crea Utente, crea un utente con email, nome, cognome, password come stringhe, e ruolo dove 0 è l'admin e qualunque altro numero un utente comune (questa scelta per il poter introdurre nuovi ruoli nel futuro o sostituire il sistema con un enumeratore in un possibile futuro)
